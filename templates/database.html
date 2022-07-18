@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<p>
+    {{version}}<br><br>
+
+    Number of records in {{clean_table}}: {{records2}}<br>
+    <br>
+
+    Number of records in {{review_table}}: {{records}}<br>
+    <br>
+
+    Next Step: <a href="/clean">Clean and Cache Text</a><br>
+    <br>
+    
+</p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<form method='post' action='/translate' enctype='multipart/form-data'>
+    Upload google credential file: <input type='file' name='g_credential'><br>
+    Upload csv file: <input type='file' name='pre_translated'><br>
+    <input type='submit' value='Translate!'><br>
+</form>
+
+<br>
+Next Step: <a href="/upload">Upload</a>
+
+{% endblock %}

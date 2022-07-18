@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<p>
+    Reviews_new.csv has been updated.<br>
+    There are {{num_new}} new reviews.<br>
+    Estimated Translation Cost: USD {{est_cost}}.<br>
+    <br>
+    <a href="/new/download">Download file</a><br>
+    Next Step: <a href="/translate">Translate</a>
+</p>
+
+
+
+{% endblock %}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sentiment Analysis for the Reviews of app">
+    <link rel="stylesheet" href="/static/css/main.css">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/chart.js@3.5.0/dist/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://unpkg.com/chartjs-chart-wordcloud@3"></script>
+    <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
+    
+    <title>Reviews Analysis</title>
+</head>
+<body>
+    <div class="top-bar">
+        <h1>Reviews Analysis</h1>
+    </div>
+    <div class="filter-bar">
+        <form method="POST" action="/report">
+            Filter from 
+            <select name="filter_date_start" id="filter_date_start">
+                {% for date in date_range %}
+                <option value="{{date}}">{{date}}</option>
+                {% endfor %}
+            </select> to 
+            <select name="filter_date_end" id="filter_date_end">
+                {% for date in date_range %}
+                <option value="{{date}}">{{date}}</option>
+                {% endfor %}
+            </select>
+            <select name="filter_os" id="filter_os">
+                <option value="app">iOS & Android</option>
+                <option value="iOS">iOS</option>
+                <option value="Android">Android</option>
+            </select>
+            <button type="submit">Refresh</button>
+        </form>
+    </div>
+
+    <div class="c1">
+        <canvas id="chart1" width="1" height="1"></canvas>
+    </div>
+    <div class="c2">
+        <canvas id="chart2" width="3" height="1"></canvas>
+    </div>
+    <div class="c3">
+        <canvas id="chart3" width="2" height="3"></canvas>
+    </div>
+    <div class="c4">
+        <canvas id="chart4" height="270px"></canvas>
+    </div>
+    <div class="c5" >
+        <canvas id="chart5"width="2" height="1"></canvas>
+    </div>
+    <div class="c6">
+        <canvas id="chart6" width="2" height="1"></canvas>
+    </div>
+    <div class="c7">
+        <section class="s1">
+            <h2>ISSUES</h2>
+            <header>ADVERTISEMENT</header>
+            <p id="issues_ad"></p>
+            <header>BUGS</header>
+            <p id="issues_bugs"></p>
+            <header>PRIVACY</header>
+            <p id="issues_privacy"></p>
+            <header>OTHERS</header>
+            <p id="issues_others"></p>
+        </section>
+        <section class="s2">
+            <h2>Reviews by Features</h2>
+            <header>Feature: <b><span id="feature1"></span></b>, Ratings: <span id="rating1"></span></header>
+            <p><span id="review1"></span></p>
+            <header>Feature: <b><span id="feature2"></span></b>, Ratings: <span id="rating2"></span></header>
+            <p><span id="review2"></span></p>
+            <header>Feature: <b><span id="feature3"></span></b>, Ratings: <span id="rating3"></span></header>
+            <p><span id="review3"></span></p>
+            <header>Feature: <b><span id="feature4"></span></b>, Ratings: <span id="rating4"></span></header>
+            <p><span id="review4"></span></p>
+            <header>Feature: <b><span id="feature5"></span></b>, Ratings: <span id="rating5"></span></header>
+            <p><span id="review5"></span></p>
+            <header>Feature: <b><span id="feature6"></span></b>, Ratings: <span id="rating6"></span></header>
+            <p><span id="review6"></span></p>
+            <header>Feature: <b><span id="feature7"></span></b>, Ratings: <span id="rating7"></span></header>
+            <p><span id="review7"></span></p>
+            <header>Feature: <b><span id="feature8"></span></b>, Ratings: <span id="rating8"></span></header>
+            <p><span id="review8"></span></p>
+            <header>Feature: <b><span id="feature9"></span></b>, Ratings: <span id="rating9"></span></header>
+            <p><span id="review9"></span></p>
+            <header>Feature: <b><span id="feature10"></span></b>, Ratings: <span id="rating10"></span></header>
+            <p><span id="review10"></span></p>
+        </section>
+    </div>
+    
+    <script type="text/javascript">
+        var data = JSON.parse('{{model_output | tojson | safe}}');
+    </script>
+    <script src="/static/review_script.js" type="module"></script>
+    <footer>
+        Data from <span id="as_of_date"></span>
+    </footer>
+  </body>
+</html>

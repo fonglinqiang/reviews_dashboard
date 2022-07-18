@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% if session['user'] %}
+<nav>
+    <ol list-style-type= none >
+        <li><a href="{{url_for('new') }}">New</a></li>
+        <li><a href="{{url_for('translate')}}">Translate</a></li>
+        <li><a href="{{url_for('upload') }}">Upload</a></li>
+        <li><a href="{{url_for('db') }}">Database</a></li>
+        <li><a href="{{url_for('clean') }}">Clean</a></li>
+        <li><a href="{{url_for('update') }}">Update Model</a></li>
+        <li>*<a href="{{url_for('report') }}">Dashboard</a>*</li>
+        <li><a href="{{url_for('logout') }}">Logout</a></li>
+    </ol>
+</nav>
+{% else %}
+{% endif %}
+{% endblock %}

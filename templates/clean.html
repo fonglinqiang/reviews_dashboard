@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<p>
+    Number of records in {{clean_table}}: {{cleaned_records}}<br>
+    <br>
+
+    Number of records in {{review_table}}: {{review_records}}<br>
+    <br>
+    
+    Next Step: <a href="/update">Run Model and Update Results</a>
+</p>
+{% endblock %}
